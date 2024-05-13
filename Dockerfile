@@ -5,12 +5,18 @@ FROM python:3.11 as builder
 WORKDIR /app
 
 # Install any needed packages specified in requirements.txt
+
+# Install a prerequisite for pip package beepy
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends libasound-dev
+
 COPY requirements.txt /app
 RUN pip install --upgrade pip
-RUN pip3 wheel --wheel-dir=/wheels -r requirements.txt
+RUN pip wheel --wheel-dir=/wheels -r requirements.txt
 
 
 FROM python:3.11-slim
+WORKDIR /app
 
 RUN --mount=type=bind,from=builder,source=/wheels,target=/deps/wheels \
     pip3 install -U /deps/wheels/*.whl
@@ -22,4 +28,4 @@ COPY credentials.json /app
 
 
 # Run the main program when the container launches
-CMD ["python3", "./gmail_agent.py"]
+CMD ["python3", "-u", "./gmail_agent.py"]
