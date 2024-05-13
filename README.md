@@ -35,12 +35,17 @@ cd verigood
 export OPENAI_API_KEY='your-api-key-here'
 ``` 
 
-4. Start the docker container with docker compose
+4. Install python dependencies (ideally in a virtual env)
 ```bash
-docker-compose up
+pip install -r requirements.txt
 ```
 
-5. In the shell, you will be prompted to visit the google oauth URL to authorize the application.
+5. Run the main program
+```bash
+python gmail_agent.py
+```
+
+6. You will be prompted to visit the google oauth URL to authorize the application.
 
     For example, you will see the following message:
 ```
@@ -48,12 +53,9 @@ Please visit this URL to authorize this application: https://accounts.google.com
 ```
 
 
-6. Once successful, your Google's auth tokens will be cached in `token.json` under the same folder so the oauth flow will be skipped in the future runs.
+7. Once the oauth is successful, your Google's auth tokens will be cached in `token.json` under the same folder so the oauth flow will be skipped in the future runs.
 
 7. **Enjoy!**
-
-P.S. If you don't like docker or docker compose for some reason, you can use the application directly by calling `python gmail_agent.py` after installing the dependencies in `requirements.txt`.
-
 
 
 
