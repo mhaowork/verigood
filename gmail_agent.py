@@ -117,6 +117,9 @@ def poll_for_new_emails(creds):
 def main():
   creds = None
   SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
+  if os.environ.get("OPENAI_API_KEY") is None:
+      print("Please set the OPENAI_API_KEY environment variable")
+      return
   # The file token.json stores the user's access and refresh tokens, and is
   # created automatically when the authorization flow completes for the first
   # time.
