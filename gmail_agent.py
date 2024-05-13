@@ -78,7 +78,6 @@ def poll_for_new_emails(creds):
     profile = service.users().getProfile(userId=user_id).execute()
     # Get the historyId from the profile
     start_history_id = profile['historyId']
-    print('Start history id: ', start_history_id)
     while True:
         try:
             history = (
@@ -139,7 +138,7 @@ def main():
     with open("token.json", "w") as token:
       token.write(creds.to_json())
 
-  print("Starting Gmail Agent")
+  print("Started Gmail agent, monitoring")
   poll_for_new_emails(creds)
 
 
