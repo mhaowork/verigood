@@ -66,7 +66,7 @@ def fetch_email(email_id, creds):
             body = mime_msg.get_payload()
     except Exception as e:
         print(f"An error occurred parsing email: {e}")
-    if len(body) > 10000:
+    if len(body) > 20000:
         print(f'Email body too long (length: {len(body)}, email_id: {email_id}), skipping')
         return
     process_email(subject, body)
