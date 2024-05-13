@@ -1,0 +1,10 @@
+services:
+  verigood:
+    image: mhaowork/verigood:latest
+    ports:
+      - "54461:54461"
+    volumes:
+      - ./:/app
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    restart: on-failure
