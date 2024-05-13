@@ -23,7 +23,7 @@ def process_email(subject, body):
                     You are a helpful assistant that helps users extract validation codes / login links / magic links from emails.
                     First, you need to check if this email is for verification purpose.
                     These emails usually contain a one-time code or login link to authenticate the user. If it's not a verification email, you should return N/A (no quotes).
-                    Otherwise, your response should contain only the validation code OR a login link starting with http(s).
+                    Otherwise, your response should contain only the validation code OR a login link starting with http(s). No quotes needed in the result.
                 """,
             },
             {
@@ -116,12 +116,12 @@ def poll_for_new_emails(creds):
 
 def main():
   creds = None
+  SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
   # The file token.json stores the user's access and refresh tokens, and is
   # created automatically when the authorization flow completes for the first
   # time.
   if os.path.exists("token.json"):
     # If modifying these scopes, delete the file token.json.
-    SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
     creds = Credentials.from_authorized_user_file("token.json", SCOPES)
   # If there are no (valid) credentials available, let the user log in.
   if not creds or not creds.valid:
@@ -131,11 +131,12 @@ def main():
       flow = InstalledAppFlow.from_client_secrets_file(
           "credentials.json", SCOPES
       )
-      creds = flow.run_local_server(port=0)
+      creds = flow.run_local_server(port=54461, host="localhost", bind_addr='0.0.0.0', open_browser=False)
     # Save the credentials for the next run
     with open("token.json", "w") as token:
       token.write(creds.to_json())
 
+  print("Starting Gmail Agent")
   poll_for_new_emails(creds)
 
 
