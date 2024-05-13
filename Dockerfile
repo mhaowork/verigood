@@ -21,11 +21,5 @@ WORKDIR /app
 RUN --mount=type=bind,from=builder,source=/wheels,target=/deps/wheels \
     pip3 install -U /deps/wheels/*.whl
 
-# Copy the necessary contents into the container at /app
-COPY gmail_agent.py /app
-# (YOU NEED TO DOWNLOAD YOUR OWN CREDENTIALS FILE FROM GOOGLE):
-COPY credentials.json /app
-
-
 # Run the main program when the container launches
 CMD ["python3", "-u", "./gmail_agent.py"]
