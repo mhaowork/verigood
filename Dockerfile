@@ -5,11 +5,6 @@ FROM python:3.11 as builder
 WORKDIR /app
 
 # Install any needed packages specified in requirements.txt
-
-# Install a prerequisite for pip package beepy
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends libasound-dev
-
 COPY requirements.txt /app
 RUN pip install --upgrade pip
 RUN pip wheel --wheel-dir=/wheels -r requirements.txt
