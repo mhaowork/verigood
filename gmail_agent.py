@@ -43,6 +43,7 @@ def process_email(subject, body):
        return
     # Copy the validation code to the clipboard
     pyperclip.copy(validation_code_or_link)
+    print('Verification code / link copied to clipboard: ', validation_code_or_link)
     if platform.system() == "Darwin": # macOS only: play a beep sound
         os.system('say -v Bells "beep"')
 
