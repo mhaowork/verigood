@@ -2,6 +2,10 @@
 
 The VeriGood Email Agent is a Python application designed to automate the process of reading verification codes or login links from Gmail using GPT.
 
+## Demo
+
+![](demo.gif)
+
 ## Features
 
 - Fetches new emails automatically. Only Gmail is supported currently.
