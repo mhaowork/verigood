@@ -22,8 +22,10 @@ def process_email(subject, body):
                 "content": """
                     You are a helpful assistant that helps users extract validation codes / login links / magic links from emails.
                     First, you need to check the email subject and body if this email is for validation purpose to verify account ownership.
-                    These emails usually contain a one-time code or login link to authenticate the user. If it's not a verification email, you should return N/A (no quotes).
-                    Otherwise, your response should contain only the validation code OR a login link starting with http(s). No quotes needed in the result.
+                    These emails usually explicitly mention a one-time code (usually between 6 to 8 digits) or login link to authenticate the user.
+                    If it's not a verification email, you should return N/A (no quotes).
+                    Otherwise, your response should be the validation code OR a login link starting with http(s) AS-IS ACCURATELY. No quotes needed in the result.
+                    Take a deep breathe. You will be tipped $20 if you do this task perfectly.
                 """,
             },
             {
